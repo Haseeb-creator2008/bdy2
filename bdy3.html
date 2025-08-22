@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Madam Ji! 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            color: white;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3, #48dbfb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .birthday-message {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .cake-container {
+            position: relative;
+            margin: 40px auto;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .cake {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+            cursor: pointer;
+        }
+
+        .cake:hover {
+            transform: rotateY(20deg) scale(1.05);
+        }
+
+        .cake img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .knife {
+            position: absolute;
+            top: -50px;
+            right: 50px;
+            width: 60px;
+            height: 200px;
+            transform: rotate(-15deg);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 5;
+        }
+
+        .cake:hover ~ .knife {
+            opacity: 1;
+            transform: rotate(-15deg) translateY(20px);
+        }
+
+        .cut-cake-btn {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .cut-cake-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+        }
+
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background: rgba(255,255,255,0.5);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: confettiFall 5s ease-in infinite;
+        }
+
+        .celebration-text {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 30px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s ease;
+        }
+
+        .celebration-text.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes cutCake {
+            0% {
+                transform: scale(1) rotateY(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotateY(180deg);
+            }
+            100% {
+                transform: scale(1) rotateY(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-message {
+                font-size: 1.2rem;
+            }
+            
+            .cake-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Happy Birthday Madam Ji! 🎉</h1>
+            <p class="birthday-message">Wishing you a day filled with joy, laughter, and wonderful surprises!</p>
+        </div>
+
+        <div class="cake-container">
+            <div class="cake" id="birthdayCake">
+                <img src="https://placehold.co/600x600" alt="Beautiful three-tier birthday cake with pink frosting, edible flowers, and sparkling candles on top against a soft background" />
+            </div>
+            <div class="knife">
+                <img src="https://placehold.co/60x200" alt="Silver cake cutting knife with decorative handle for birthday celebrations" />
+            </div>
+        </div>
+
+        <button class="cut-cake-btn" onclick="cutCake()">Cut the Cake! 🎂</button>
+        
+        <div class="celebration-text" id="celebrationText">
+            🎊 Wishing You Many Happy Returns! 🎊
+        </div>
+    </div>
+
+    <script>
+        // Create balloons
+        function createBalloons() {
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1', '#f368e0'];
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.top = Math.random() * 100 + 'vh';
+                document.body.appendChild(balloon);
+            }
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1', '#ffffff'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 15 + 5) + 'px';
+                confetti.style.height = (Math.random() * 15 + 5) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Cake cutting animation
+        function cutCake() {
+            const cake = document.getElementById('birthdayCake');
+            const celebrationText = document.getElementById('celebrationText');
+            const button = document.querySelector('.cut-cake-btn');
+            
+            // Play cutting sound (placeholder for actual sound)
+            const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+Dwv2gcBzKL0/LMeSwFJHfH8N2QQAoUXrTp66hV)
